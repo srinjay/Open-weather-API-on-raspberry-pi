@@ -26,4 +26,25 @@ def get_weather_data(city_id):
     return weather_data.json()
 
 
-def get_arrival
+def get_arrival():
+    today=datetime.now()
+    max_day=today+timedelta(days=4)
+    day=input('what day of the month do you plan to arrive?')
+    print(today.strftime('%d'),'-',max_day.strftime('%d'))
+    print('what hour will you arrive?')
+    hour=int(input())
+#weather updates are every 3 hours
+    hour-=hour%3
+#gives the total arrival year month day hour
+    arrival=today.strftime('%y')+'-'+ today.strftime('%m')+'-'+ day+ '-'+str(hour)
+    return arrival
+
+
+     
+def get_forecast(arrival,weather_data):
+    for i in weather_data['list']:
+        if i['dt_txt'] == arrival:
+            return i
+
+        
+    
